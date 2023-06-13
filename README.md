@@ -1,1 +1,1 @@
-https://github.com/FaiizOfficial/myportofolio.git
+https://github.com/FaiizOfficial/myportofolio/
