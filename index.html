@@ -119,8 +119,8 @@
   <!-- POPUP PERTAMA -->
   <div class="popup" id="popup">
     <h2>Sayang tidak sama aku?😚</h2>
-    <button class="btn-blue" onclick="showHeart()">Sayang banget sama kamu🤍</button>
-    <button class="btn-pink" onclick="showHeart()">Sayang buangettt sama kamuuu🤍</button>
+    <button class="btn-green" onclick="showHeart()">Sayang banget sama kamu🤍</button>
+    <button class="btn-blue" onclick="showHeart()">Sayang buangettt sama kamuuu🤍</button>
   </div>
 
   <!-- TAMPILAN LOVE -->
@@ -138,7 +138,7 @@
     const heartShape = [
       [0,1,0,0,0,1,0],
       [1,1,1,0,1,1,1],
-      [1,1,1,1,1,1,1],
+     [1,1,1,1,1,1,1,1],
       [1,1,1,1,1,1,1],
       [0,1,1,1,1,1,0],
       [0,0,1,1,1,0,0],
@@ -179,7 +179,7 @@
               if (heartsCreated === totalHearts) {
                 setTimeout(() => {
                   document.getElementById("final-message").style.display = "block";
-                }, 700); // muncul setelah 3 detik
+                }, 5500); // muncul setelah 5.5 detik
               }
             }, 50);
           }, delay);
