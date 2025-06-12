@@ -1,75 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <table bgcolor="blue">
-    <meta charset="UFT-8">
-    <meta name="viewport" content="widht=device-widht, initial-scale=1.0">
-    <title>Home</title>
-</table>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Pop Heart</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #111;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup {
+      position: absolute;
+      background: white;
+      color: #333;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      text-align: center;
+      z-index: 10;
+      animation: fadeIn 1s ease;
+    }
+
+    .popup h2 {
+      margin-bottom: 20px;
+    }
+
+    .popup button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .popup button:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-green {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .btn-blue {
+      background-color: #2196f3;
+      color: white;
+    }
+
+    .love-container {
+      display: none;
+      position: relative;
+      width: 320px;
+      height: 280px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 10px;
+    }
+
+    .character {
+      position: absolute;
+      left: 10px;
+      bottom: 20px;
+      width: 80px;
+    }
+
+    .heart {
+      width: 20px;
+      height: 20px;
+      background: url('https://i.imgur.com/ZHrXbSq.png') no-repeat center;
+      background-size: contain;
+      position: absolute;
+      animation: pulse 1s infinite ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
 </head>
-
 <body>
-    <nav align="center">
-        <a href="index.html">Home</a> |
-        <a href="mailto:octaviaparamitha81@gmail.com">Contact</a> |
-        <a href="about.html">About me</a> |
-    </nav>
 
-    <hr />
+  <!-- POPUP PERTAMA -->
+  <div class="popup" id="popup">
+    <h2>Sayang nggak sama akuuu? 😚</h2>
+    <button class="btn-green" onclick="showHeart()">Sayang banget sama kamu 💚</button>
+    <button class="btn-blue" onclick="showHeart()">Sayang buangettt sama kamuuu 💙</button>
+  </div>
 
-    <header style="text-align: center;">
-        <img src="Image/PROFILE.png" width="200" height="200" style="border-radius: 50%;">
-        <h1>Octavia Paramitha</h1>
-        <p>(Akuntan)</p>
-    </header>
+  <!-- TAMPILAN LOVE -->
+  <div class="love-container" id="loveBox">
+    <img src="https://i.imgur.com/B4HkWxx.png" class="character" alt="cute character" />
+    <!-- Script akan isi hearts di sini -->
+  </div>
 
-    <hr />
-    <br>
-    <br>
-    <article style="text-align: center;">
-        <h2>Overview</h2>
-        <p>
-            Hi, Saya adalah seorang akuntan
-        </p>
-    </article>
+  <script>
+    function showHeart() {
+      document.getElementById("popup").style.display = "none";
+      const loveBox = document.getElementById("loveBox");
+      loveBox.style.display = "block";
 
-        <table align="center" border="1" width="80%" bgcolor="ghostwhite">
-            <thead>
-                <tr  bgcolor="Aqua">
-                    <th>Data Diri</th>
-                    <th>Keterangan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <ul>
-                            <li>Nama</li>
-                            <li>Umur</li>
-                            <li>Status</li>
-                            <li>Instagram</li>
-                            <li>Hobi</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Octavia Paramitha</li>
-                            <li>18 Tahun</li>
-                            <li>Lajang</li>
-                            <li><a href="https://www.instagram.com/tataa18_._/">tataa18_._</a></li>
-                            <li>Membaca dan menulis</li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <br>
-        <br>
-    <hr>
-    <footer style="text-align: center;">
-        <p>Copyright & copy; 2023 <a href="https://www.instagram.com/tataa18_._/">tataa18_._</a></p>
-    </footer>
+      const heartShape = [
+        [0,1,0,0,1,0],
+        [1,1,1,1,1,1],
+        [1,1,1,1,1,1],
+        [0,1,1,1,1,0],
+        [0,0,1,1,0,0],
+        [0,0,1,1,0,0],
+      ];
+
+      const size = 30;
+      heartShape.forEach((row, y) => {
+        row.forEach((cell, x) => {
+          if(cell) {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = `${x * size + 100}px`;
+            heart.style.top = `${y * size + 20}px`;
+            loveBox.appendChild(heart);
+          }
+        });
+      });
+    }
+  </script>
+
 </body>
-</html> 
+</html>
