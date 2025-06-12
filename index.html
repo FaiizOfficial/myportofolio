@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Love Pop Heart</title>
   <style>
+    .heart {
+  width: 20px;
+  height: 20px;
+  background: url(LOPE.png) no-repeat center;
+  background-size: contain;
+  position: absolute;
+  opacity: 0;
+  animation: pulse 1s infinite ease-in-out;
+}
+
+.heart.show {
+  opacity: 1;
+}
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -116,34 +130,80 @@
   </div>
 
   <script>
-    function showHeart() {
-      document.getElementById("popup").style.display = "none";
-      const loveBox = document.getElementById("loveBox");
-      loveBox.style.display = "block";
+  function showHeart() {
+    document.getElementById("popup").style.display = "none";
+    const loveBox = document.getElementById("loveBox");
+    loveBox.style.display = "block";
 
-      const heartShape = [
-        [0,1,0,0,1,0],
-        [1,1,1,1,1,1],
-        [1,1,1,1,1,1],
-        [0,1,1,1,1,0],
-        [0,0,1,1,0,0],
-        [0,0,1,1,0,0],
-      ];
+    const heartShape = [
+      [0,1,0,0,1,0],
+      [1,1,1,1,1,1],
+      [1,1,1,1,1,1],
+      [0,1,1,1,1,0],
+      [0,0,1,1,0,0],
+      [0,0,1,1,0,0],
+    ];
 
-      const size = 30;
-      heartShape.forEach((row, y) => {
-        row.forEach((cell, x) => {
-          if(cell) {
+    const size = 30;
+    let delay = 0;
+    let totalHearts = 0;
+
+    // Hitung jumlah total heart
+    heartShape.forEach(row => {
+      totalHearts += row.filter(cell => cell).length;
+    });
+
+    let heartsCreated = 0;
+
+    heartShape.forEach((row, y) => {
+      row.forEach((cell, x) => {
+        if (cell) {
+          setTimeout(() => {
             const heart = document.createElement("div");
             heart.className = "heart";
-            heart.style.left = `${x * size + 100}px`;
-            heart.style.top = `${y * size + 20}px`;
+            heart.style.left = `250px`;
+            heart.style.top = `250px`;
+            heart.style.opacity = "0";
             loveBox.appendChild(heart);
-          }
-        });
+
+            // Animate to final position
+            setTimeout(() => {
+              heart.style.transition = "all 0.5s ease, opacity 0.5s";
+              heart.style.left = `${x * size + 100}px`;
+              heart.style.top = `${y * size + 20}px`;
+              heart.style.opacity = "1";
+              heartsCreated++;
+
+              // Setelah semua heart muncul, munculkan teks
+              if (heartsCreated === totalHearts) {
+                setTimeout(() => {
+                  document.getElementById("final-message").style.display = "block";
+                }, 700); // muncul setelah 0.7 detik
+              }
+            }, 50);
+          }, delay);
+          delay += 150;
+        }
       });
-    }
-  </script>
+    });
+  }
+</script>
+
+<!-- POP-UP KATA-KATA -->
+<div id="final-message" style="
+  display: none;
+  position: absolute;
+  bottom: 30px;
+  font-size: 18px;
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+  padding: 12px 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 1s ease forwards;
+">
+  💌 Minumnyaa jangan lupa yah sayangg 💖
+</div>
 
 </body>
 </html>
