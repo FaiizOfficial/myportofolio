@@ -90,7 +90,7 @@
       position: absolute;
       left: 10px;
       bottom: 20px;
-      width: 80px;
+      width: 90px;
     }
 
     .heart {
@@ -118,9 +118,9 @@
 
   <!-- POPUP PERTAMA -->
   <div class="popup" id="popup">
-    <h2>Sayang tidak sama akuuu? 😚</h2>
-    <button class="btn-green" onclick="showHeart()">Sayang banget sama kamu 💚</button>
-    <button class="btn-blue" onclick="showHeart()">Sayang buangettt sama kamuuu 💙</button>
+    <h2>Sayang tidak sama aku?😚</h2>
+    <button class="btn-blue" onclick="showHeart()">Sayang banget sama kamu🤍</button>
+    <button class="btn-pink" onclick="showHeart()">Sayang buangettt sama kamuuu🤍</button>
   </div>
 
   <!-- TAMPILAN LOVE -->
@@ -136,8 +136,8 @@
     loveBox.style.display = "block";
 
     const heartShape = [
-      [0,0,1,0,1,0,0],
-      [0,1,1,0,1,1,0],
+      [0,1,0,0,0,1,0],
+      [1,1,1,0,1,1,1],
       [1,1,1,1,1,1,1],
       [1,1,1,1,1,1,1],
       [0,1,1,1,1,1,0],
@@ -179,7 +179,7 @@
               if (heartsCreated === totalHearts) {
                 setTimeout(() => {
                   document.getElementById("final-message").style.display = "block";
-                }, 700); // muncul setelah 0.7 detik
+                }, 700); // muncul setelah 3 detik
               }
             }, 50);
           }, delay);
@@ -203,7 +203,7 @@
   backdrop-filter: blur(5px);
   animation: fadeIn 1s ease forwards;
 ">
-  💌 Minumnyaa jangan lupa yah sayangg 💖
+  Minumnyaa jangan lupa yah sayangg 💖
 </div>
 
 </body>
